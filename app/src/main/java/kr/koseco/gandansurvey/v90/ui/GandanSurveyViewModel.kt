@@ -167,7 +167,7 @@ class GandanSurveyViewModel(application: Application) : AndroidViewModel(applica
     private val _openMeasureDialogEvent = MutableStateFlow(false)
     val openMeasureDialogEvent: StateFlow<Boolean> = _openMeasureDialogEvent.asStateFlow()
 
-    val btManager = GnssBluetoothManager(
+    val btManager: GnssBluetoothManager = GnssBluetoothManager(
         context = application,
         scope = viewModelScope,
         onNmeaLine = { line ->
@@ -221,7 +221,7 @@ class GandanSurveyViewModel(application: Application) : AndroidViewModel(applica
         }
     }
 
-    val ntripClient = NtripClient(
+    val ntripClient: NtripClient = NtripClient(
         scope = viewModelScope,
         onRtcmReceived = { buffer, len, bps ->
             btManager.writeRtcmBytes(buffer, len)
